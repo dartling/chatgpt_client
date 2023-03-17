@@ -1,41 +1,27 @@
+import 'package:chatgpt_client/api/chat_api.dart';
+import 'package:chatgpt_client/chat_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChatApp(chatApi: ChatApi()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ChatApp extends StatelessWidget {
+  const ChatApp({required this.chatApi, super.key});
+
+  final ChatApi chatApi;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ChatGPT Client',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.teal,
+          secondary: Colors.lime,
+        ),
       ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chat'),
-      ),
-      body: const Center(
-        child: Text(''),
-      ),
+      home: ChatPage(chatApi: chatApi),
     );
   }
 }
