@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:markdown_widget/markdown_widget.dart';
 
 class MessageBubble extends StatelessWidget {
   const MessageBubble({
@@ -35,7 +36,10 @@ class MessageBubble extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            Text(content),
+            MarkdownWidget(
+              data: content,
+              shrinkWrap: true,
+            ),
           ],
         ),
       ),
