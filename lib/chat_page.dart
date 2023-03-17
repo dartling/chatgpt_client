@@ -54,10 +54,19 @@ class _ChatPageState extends State<ChatPage> {
       _messages.add(ChatMessage(message, true));
       _awaitingResponse = true;
     });
-    final response = await widget.chatApi.completeChat(_messages);
-    setState(() {
-      _messages.add(ChatMessage(response, false));
-      _awaitingResponse = false;
-    });
+    try {
+      final response = await widget.chatApi.completeChat(_messages);
+      setState(() {
+        _messages.add(ChatMessage(response, false));
+        _awaitingResponse = false;
+      });
+    } catch (err) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('An error occurred. Please try again.')),
+      );
+      setState(() {
+        _awaitingResponse = false;
+      });
+    }
   }
 }
