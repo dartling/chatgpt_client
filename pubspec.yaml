@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   markdown_widget: ^2.0.0+1
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -21,3 +22,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - .env

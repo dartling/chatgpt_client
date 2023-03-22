@@ -1,9 +1,12 @@
 import 'package:chatgpt_client/api/chat_api.dart';
 import 'package:chatgpt_client/chat_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
-  runApp(ChatApp(chatApi: ChatApi()));
+Future<void> main() async {
+  await dotenv.load(fileName: '.env');
+
+  runApp(ChatApp(chatApi: ChatApi(dotenv.get('OPEN_AI_API_KEY'), dotenv.get('OPEN_AI_ORGANIZATION'))));
 }
 
 class ChatApp extends StatelessWidget {
