@@ -1,3 +1,4 @@
+import 'package:chatgpt_client/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:markdown_widget/markdown_widget.dart';
 
@@ -5,40 +6,42 @@ class MessageBubble extends StatelessWidget {
   const MessageBubble({
     required this.content,
     required this.isUserMessage,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final String content;
   final bool isUserMessage;
 
   @override
   Widget build(BuildContext context) {
-    final themeData = Theme.of(context);
     return Container(
       margin: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: isUserMessage
-            ? themeData.colorScheme.primary.withOpacity(0.4)
-            : themeData.colorScheme.secondary.withOpacity(0.4),
-        borderRadius: const BorderRadius.all(Radius.circular(12)),
-      ),
+      decoration: BoxDecoration(color: AppStyle.black),
       child: Padding(
         padding: const EdgeInsets.all(12),
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Text(
-                  isUserMessage ? 'You' : 'AI',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
+            Icon(
+              isUserMessage ? Icons.person : Icons.blur_on_sharp,
+              color: isUserMessage ? AppStyle.white : AppStyle.primary2,
             ),
-            const SizedBox(height: 8),
-            MarkdownWidget(
-              data: content,
-              shrinkWrap: true,
+            const SizedBox(width: 8),
+            Expanded(
+              child: MarkdownWidget(
+                data: content,
+                shrinkWrap: true,
+                config: MarkdownConfig(
+                  configs: [
+                    isUserMessage
+                        ? const PConfig(
+                            textStyle: TextStyle(color: AppStyle.white))
+                        : const PConfig(
+                            textStyle: TextStyle(color: AppStyle.primary2)),
+                    const H1Config(style: TextStyle(color: AppStyle.primary2))
+                  ],
+                ),
+              ),
             ),
           ],
         ),
