@@ -1,12 +1,15 @@
 import 'package:chatgpt_client/api/chat_api.dart';
 import 'package:chatgpt_client/chat_page.dart';
+import 'package:chatgpt_client/firebase_options.dart';
 import 'package:chatgpt_client/styles/styles.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(ChatApp(chatApi: ChatApi()));
 }
 

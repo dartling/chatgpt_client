@@ -14,7 +14,9 @@ class ChatApi {
       model: _model,
       messages: messages
           .map((e) => OpenAIChatCompletionChoiceMessageModel(
-                role: e.isUserMessage ? 'user' : 'assistant',
+                role: e.isUserMessage
+                    ? OpenAIChatMessageRole.user
+                    : OpenAIChatMessageRole.assistant,
                 content: e.content,
               ))
           .toList(),

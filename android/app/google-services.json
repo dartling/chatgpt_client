@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "322259509532",
+    "firebase_url": "https://hectic-ai-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "hectic-ai",
+    "storage_bucket": "hectic-ai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322259509532:android:6bac849ab745e7d7f75ad9",
+        "android_client_info": {
+          "package_name": "com.example.chatgpt_client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322259509532-u8jlq9cnc064gfd14vt0sch11okp99h1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrYf2y5XHuutcBmQwI9UEFli0meDuWGPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "322259509532-clmc1hmpc4gh432nto6snhbac75r45jc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
