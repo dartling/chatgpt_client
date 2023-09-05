@@ -1,4 +1,6 @@
+import 'package:chatgpt_client/styles/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class MessageComposer extends StatelessWidget {
   MessageComposer({
@@ -16,41 +18,42 @@ class MessageComposer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(12),
-      color: Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.05),
+      color: AppStyle.white,
       child: SafeArea(
         child: Row(
           children: [
             Expanded(
-              child: !awaitingResponse
-                  ? TextField(
-                      controller: _messageController,
-                      onSubmitted: onSubmitted,
-                      decoration: const InputDecoration(
-                        hintText: 'Write your message here...',
-                        border: InputBorder.none,
+              child: TextField(
+                maxLines: 5,
+                minLines: 1,
+                controller: _messageController,
+                onSubmitted: onSubmitted,
+                decoration: const InputDecoration(
+                  hintText: 'Write your message here...',
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+            !awaitingResponse
+                ? Material(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    color: AppStyle.primary3,
+                    child: IconButton(
+                      onPressed: () => onSubmitted(_messageController.text),
+                      icon: const Icon(
+                        Icons.send,
+                        color: AppStyle.white,
                       ),
-                    )
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: CircularProgressIndicator(),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Text('Fetching response...'),
-                        ),
-                      ],
                     ),
-            ),
-            IconButton(
-              onPressed: !awaitingResponse
-                  ? () => onSubmitted(_messageController.text)
-                  : null,
-              icon: const Icon(Icons.send),
-            ),
+                  )
+                : const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: SpinKitThreeBounce(
+                      size: 25,
+                      color: AppStyle.primary4,
+                    ),
+                  ),
           ],
         ),
       ),
